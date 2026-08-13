@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ganpati Bappa Morya ❤️🙏</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#fff1c1,#ffd59a,#ffb38a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:92%;
+    max-width:430px;
+    padding:28px 20px;
+    text-align:center;
+    background:rgba(255,255,255,.95);
+    border-radius:30px;
+    box-shadow:0 15px 45px rgba(0,0,0,.22);
+    position:relative;
+    z-index:5;
+    animation:cardIn 1s ease;
+}
+
+.ganpati{
+    font-size:105px;
+    animation:ganpati 2s ease-in-out infinite;
+}
+
+h1{
+    color:#b64b00;
+    font-size:31px;
+    margin:8px 0;
+}
+
+.subtitle{
+    color:#d46b00;
+    font-size:21px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+p{
+    color:#555;
+    font-size:17px;
+    line-height:1.6;
+    margin:10px 0 20px;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:0;
+    border-radius:30px;
+    padding:14px 24px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+button:hover{
+    transform:scale(1.07);
+}
+
+.yes{
+    background:#e67e22;
+    color:white;
+}
+
+.no{
+    background:#777;
+    color:white;
+}
+
+textarea{
+    display:none;
+    width:100%;
+    height:100px;
+    margin-top:18px;
+    padding:13px;
+    border:2px solid #f0a05a;
+    border-radius:16px;
+    font-size:16px;
+    resize:none;
+    outline:none;
+}
+
+.send{
+    display:none;
+    width:100%;
+    margin-top:12px;
+    background:#e67e22;
+    color:white;
+}
+
+#result{
+    display:none;
+    margin-top:16px;
+    font-weight:bold;
+}
+
+.floating{
+    position:fixed;
+    bottom:-50px;
+    font-size:30px;
+    animation:floatUp 7s linear infinite;
+    z-index:1;
+}
+
+.f1{left:5%;animation-delay:0s}
+.f2{left:20%;animation-delay:1.5s}
+.f3{left:40%;animation-delay:3s}
+.f4{left:65%;animation-delay:1s}
+.f5{left:85%;animation-delay:4s}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:scale(.5) translateY(80px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+@keyframes ganpati{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-12px) rotate(2deg)}
+}
+
+@keyframes floatUp{
+    0%{
+        bottom:-50px;
+        opacity:0;
+        transform:rotate(0);
+    }
+    15%{opacity:1}
+    100%{
+        bottom:110vh;
+        opacity:0;
+        transform:rotate(360deg);
+    }
+}
+
+@media(max-width:450px){
+    .ganpati{font-size:85px}
+    h1{font-size:27px}
+    .subtitle{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="floating f1">🙏</div>
+<div class="floating f2">🌺</div>
+<div class="floating f3">🪔</div>
+<div class="floating f4">❤️</div>
+<div class="floating f5">🙏</div>
+
+<div class="card">
+
+    <div class="ganpati">🙏🐘</div>
+
+    <h1>Ganpati Bappa Morya! 🙏❤️</h1>
+
+    <div class="subtitle">
+        Mere Bestfriend Ke Liye ❤️
+    </div>
+
+    <p>
+        Bappa se ek special wish maangi hai... 🥰<br>
+        <b>Is baar mere saath Biryani khane chalegi? 🍛😋</b>
+        <br><br>
+        Bappa Morya! 🙏✨
+    </p>
+
+    <div class="buttons" id="buttons">
+
+        <button class="yes" onclick="choose('YES')">
+            ❤️ Haan Chalo!
+        </button>
+
+        <button class="no" onclick="choose('NO')">
+            😅 Nahi
+        </button>
+
+    </div>
+
+    <textarea
+        id="message"
+        placeholder="Apna message yahan likho... ❤️">
+    </textarea>
+
+    <button class="send" id="send" onclick="sendAnswer()">
+        📩 Bappa Ke Saamne Answer Do 🙏
+    </button>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+let selectedAnswer = "";
+
+function choose(answer){
+
+    selectedAnswer = answer;
+
+    document.getElementById("buttons").style.display = "none";
+
+    document.getElementById("message").style.display = "block";
+
+    document.getElementById("send").style.display = "block";
+
+    if(answer === "YES"){
+
+        document.querySelector("h1").innerHTML =
+            "Ganpati Bappa Morya! 🙏❤️";
+
+        document.querySelector(".subtitle").innerHTML =
+            "Biryani Party Confirmed! 🍛😋";
+
+    }else{
+
+        document.querySelector("h1").innerHTML =
+            "Achhaaa Bestfriend 😭😂";
+
+        document.querySelector(".subtitle").innerHTML =
+            "Phir apna reason/message bhi likho 😅";
+
+    }
+}
+
+async function sendAnswer(){
+
+    const message =
+        document.getElementById("message").value.trim();
+
+    const result =
+        document.getElementById("result");
+
+    const send =
+        document.getElementById("send");
+
+    send.disabled = true;
+    send.innerText = "Sending...";
+
+    try{
+
+        const response = await fetch(
+            "/.netlify/functions/telegram",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    answer:selectedAnswer,
+                    message:message
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if(!data.success){
+            throw new Error("Failed");
+        }
+
+        result.style.display = "block";
+        result.style.color = "#27ae60";
+        result.innerHTML =
+            "✅ Answer Bappa ke saath successfully bhej diya! 🙏❤️";
+
+        send.style.display = "none";
+        document.getElementById("message").disabled = true;
+
+    }catch(error){
+
+        result.style.display = "block";
+        result.style.color = "#e74c3c";
+        result.innerHTML =
+            "❌ Answer send nahi hua. Dobara try karo.";
+
+        send.disabled = false;
+        send.innerText = "📩 Bappa Ke Saamne Answer Do 🙏";
+    }
+}
+
+</script>
+
+</body>
+</html>
